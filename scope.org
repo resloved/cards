@@ -1,0 +1,12 @@
+* TODO Scope [4/5]
+- [X] Suit and numbers
+- [X] Play
+- [X] Draw
+- [1/2] Selecting
+  + [X] Keyboard
+  + [ ] Mouse
+- [X] Switch hands
+- [ ] Document
+- [0/2] Additional
+  + [ ] Animate switching hands (Or animation in general)
+  + [ ] Hand limit

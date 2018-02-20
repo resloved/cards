@@ -1,0 +1,83 @@
+class Hand {
+  
+  // Holds and positions cards and has a position on screen
+
+  int pos;
+  float scale;
+  ArrayList<Card> cards;
+  int selected;
+
+  public Hand(int y, float scale, int amt, Deck deck) {
+
+    // Find position and add cards to hand
+
+    pos = y; 
+    cards = deck.deal(amt);
+    selected = 2;
+
+  }
+
+  void display(int scale) {
+
+    int center = width / 2;
+    int dist = 5 * scale;
+    int start = center - dist * (cards.size()-1) / 2; 
+
+    pushMatrix();
+
+    translate(0, pos);
+    
+    // Left
+    for (int i = 0; i < selected; i++) {
+      cards.get(i).display(dist * i + start, 0, scale);
+    }
+
+    // Right
+    for (int i = cards.size()-1; i > selected; i--) {
+      cards.get(i).display(dist * i + start, 0, scale);
+    }
+
+    float enlarged = 1.2;
+
+    // Selected
+    cards.get(selected).display(dist * selected + start, 0, scale * enlarged);
+
+    popMatrix();
+
+  }
+
+  void add(int amt, Deck deck) {
+
+    cards.addAll(deck.deal(amt));
+
+  }
+  
+  void selectNext(int direction) {
+
+    if (selected+direction >= 0 && selected+direction < cards.size()) {
+      selected += direction;
+    }
+
+  }
+
+  Card play() {
+
+    Card played = cards.get(selected);
+    cards.remove(selected);
+
+    // Change Selected
+    if (selected > cards.size()-1) {
+        selected--;
+    }
+
+    return played;
+
+  }
+
+  boolean playable() {
+
+    return cards.size() > 0;
+
+  }
+
+}
