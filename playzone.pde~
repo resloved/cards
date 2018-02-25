@@ -1,5 +1,0 @@
-class PlayZone {
-
-  ArrayList<Card> cards = new ArrayList<Card>();
-
-}
